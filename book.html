@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bookstore</title>
+<style>
+    
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+    }
+    .bookstore {
+      flex: 1;
+      padding: 20px;
+      border-right: 1px solid #ccc;
+    }
+    .bill {
+      flex: 1;
+      padding: 20px;
+    }
+    
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    th, td {
+      border: 1px solid #ccc;
+      padding: 8px;
+      text-align: left;
+    }
+    th {
+      background-color: #f2f2f2;
+    }
+    th:first-child, td:first-child {
+      font-weight: bold;
+    }
+    button {
+      padding: 5px 10px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #f5ce0a;
+    }
+</style>
+</head>
+<body>
+    
+  <div class="bookstore">
+    <h2>Available Books</h2>
+    <div class="cart">
+    <table>
+      <tr>
+        <th>Title</th>
+        <th>Author</th>
+        <th>Price</th>
+        <th>Action</th>
+      </tr>
+      <tr>
+        <td>Book 1</td>
+        <td>Author 1</td>
+        <td>$10</td>
+        <td><button onclick="addToCart('Book 1', 'Author 1', 10)">Add to Cart</button></td>
+      </tr>
+      <tr>
+        <td>Book 2</td>
+        <td>Author 2</td>
+        <td>$15</td>
+        <td><button onclick="addToCart('Book 2', 'Author 2', 15)">Add to Cart</button></td>
+      </tr>
+      <tr>
+        <td>Book 3</td>
+        <td>Author 3</td>
+        <td>$20</td>
+        <td><button onclick="addToCart('Book 3', 'Author 3', 20)">Add to Cart</button></td>
+      </tr>
+    </table>
+    
+  </div>
+  <div class="bill">
+    <h2>Bill</h2>
+    <table id="cart">
+      <tr>
+        <th>Title</th>
+        <th>Author</th>
+        <th>Price</th>
+      </tr>
+      <tr>
+        <td colspan="2">Total:</td>
+        <td id="totalPrice">$0</td>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>
+  <script>
+    function addToCart(title, author, price) {
+      var cartTable = document.getElementById('cart');
+      var newRow = cartTable.insertRow(1);
+      var cell1 = newRow.insertCell(0);
+      var cell2 = newRow.insertCell(1);
+      var cell3 = newRow.insertCell(2);
+      cell1.textContent = title;
+      cell2.textContent = author;
+      cell3.textContent = '$' + price;
+      updateTotal(price);
+    }
+
+    function updateTotal(price) {
+      var totalPriceCell = document.getElementById('totalPrice');
+      var currentTotal = parseFloat(totalPriceCell.textContent.replace('$', ''));
+      var newTotal = currentTotal + price;
+      totalPriceCell.textContent = '$' + newTotal.toFixed(2);
+    }
+  </script>
+</body>
+</html>
